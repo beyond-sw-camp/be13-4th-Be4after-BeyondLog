@@ -18,15 +18,10 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public TokenResponseDto login(String email, String password) {
         User user = userRepository.findByUserEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("이메일이 없습니다"));
+                .orElseThrow(() -> new IllegalArgumentException("이메일 또는 비밀번호가 올바르지 않습니다."));
 
         if(!passwordEncoder.matches(password, user.getPassword())) {
-            String encoded = passwordEncoder.encode("1234");
-            System.out.println("Encoded password: " + encoded);
-            System.out.println("password---------->"+password);
-            System.out.println("user.getPassword()---------->"+user.getPassword());
-            System.out.println(passwordEncoder.matches(password, user.getPassword()));
-            throw new IllegalArgumentException("비밀번호가 올바르지 않습니다.");
+            throw new IllegalArgumentException("이메일 또는 비밀번호가 올바르지 않습니다.");
         }
 
         return new TokenResponseDto(

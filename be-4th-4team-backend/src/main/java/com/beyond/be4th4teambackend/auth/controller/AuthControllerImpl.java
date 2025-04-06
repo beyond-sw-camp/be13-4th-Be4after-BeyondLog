@@ -1,6 +1,5 @@
 package com.beyond.be4th4teambackend.auth.controller;
 
-
 import com.beyond.be4th4teambackend.auth.dto.LoginRequestDto;
 import com.beyond.be4th4teambackend.auth.dto.ResponseDto;
 import com.beyond.be4th4teambackend.auth.dto.TokenResponseDto;
