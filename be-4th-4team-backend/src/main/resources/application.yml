@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: be-4th-4team-backend
+  profiles:
+    include: config
+
+server:
+  port: 8088
+
+springdoc:
+  packages-to-scan: com.beyond.be4th4teambackend
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui
+    tags-sorter: alpha
+    operations-sorter: alpha
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
