@@ -31,7 +31,7 @@ public class JwtTokenProvider {
     private static final long REFRESH_TOKEN_EXP = 1000L * 60L * 60L * 24L; // 24시간
 
     public JwtTokenProvider(
-            @Value("${springboot.jwt.secret}") String secret,
+            @Value("${jwt.secret}") String secret,
             @Lazy UserDetailsService userDetailsService,
             RedisTemplate<String, String> redisTemplate
     ) {
