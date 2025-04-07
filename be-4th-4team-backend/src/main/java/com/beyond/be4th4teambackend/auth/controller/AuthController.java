@@ -16,24 +16,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @Tag(name = "Authentication API", description = "사용자 인증 관련 API")
 public interface AuthController {
 
-//    @Operation(summary = "이메일 중복 체크", description = "사용자가 입력한 이메일의 중복을 체크합니다.")
-//    @ApiResponses({
-//            @ApiResponse(responseCode = "200",
-//                    description = "Success",
-//                    content = @Content(mediaType = "application/json")
-//            ),
-//            @ApiResponse(responseCode = "401",
-//                    description = "UNAUTHORIZED",
-//                    content = @Content(mediaType = "application/json")
-//            ),
-//            @ApiResponse(
-//                    responseCode = "500",
-//                    description = "INTERNAL SERVER ERROR",
-//                    content = @Content(mediaType = "application/json")
-//            )
-//    })
-//    ResponseEntity<ResponseDto<Void>> emailDuplicateCheck(@PathVariable @NotBlank @Email String email);
-
     @Operation(summary = "로그인", description = "로그인 성공 시 JWT 토큰 반환")
     @ApiResponses({
             @ApiResponse(
