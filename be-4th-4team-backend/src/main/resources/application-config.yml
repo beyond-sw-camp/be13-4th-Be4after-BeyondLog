@@ -1,11 +1,12 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://127.0.0.1:3306/3nd_test
-    username: beyond
-    password: beyond
+    url: jdbc:mariadb://127.0.0.1:3306/project4
+    username: root
+    password: 1116
 
   jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
       naming:
@@ -14,3 +15,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+jwt:
+  secret: f8436fee36a03197964e2169632e389c687dd9330b6b53225bca1085eea6cef93bb40f00c4d2e2ef1a5bd70a2fb4f3394f81dbbd955e8d00fb57f44fb90a2e1c
