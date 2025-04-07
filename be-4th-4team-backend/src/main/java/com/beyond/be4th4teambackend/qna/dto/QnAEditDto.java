@@ -1,13 +1,11 @@
 package com.beyond.be4th4teambackend.qna.dto;
 
 import com.beyond.be4th4teambackend.qna.entity.Qna;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,30 +15,23 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class QnAResponseDto {
+public class QnAEditDto {
+
     private long id;
 
     private String title;
 
     private String content;
 
-    private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 
-    private Qna qna;
-
-    private List<Qna> replies;
-
-    public static QnAResponseDto fromEntity(Qna qna) {
-        return QnAResponseDto.builder()
+    public static QnAEditDto fromEntity(Qna qna) {
+        return QnAEditDto.builder()
                 .id(qna.getId())
                 .content(qna.getContent())
                 .title(qna.getTitle())
-                .createdAt(qna.getCreatedAt())
                 .updatedAt(qna.getUpdatedAt())
-                .qna(qna.getParent())
-                .replies(qna.getReplies())
                 .build();
     }
+
 }

@@ -1,8 +1,8 @@
 package com.beyond.be4th4teambackend.qna.controller;
 
 import com.beyond.be4th4teambackend.qna.dto.QnACreateRequestDto;
+import com.beyond.be4th4teambackend.qna.dto.QnAEditDto;
 import com.beyond.be4th4teambackend.qna.dto.QnAResponseDto;
-import com.beyond.be4th4teambackend.qna.entity.Qna;
 import com.beyond.be4th4teambackend.qna.service.QnAService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,7 +29,6 @@ public class QnAController {
 
     private final QnAService qnaService;
 
-    // 작성
     @PostMapping
     @Operation(summary = "Q&A 작성", description =  "Q&A를 작성합니다.")
     public ResponseEntity<QnAResponseDto> createQna(
@@ -39,23 +38,20 @@ public class QnAController {
         return ResponseEntity.ok(qnaService.createQnA(parentId,requestDto)); // 원글 작성
     }
 
-    // 조회
     @GetMapping
     @Operation(summary = "Q&A 조회", description = "Q&A를 조회합니다.")
-    public ResponseEntity<List<Qna>>getQnAs(){
+    public ResponseEntity<List<QnAResponseDto>>getQnAs(){
         return ResponseEntity.ok(qnaService.getQnA());
     }
 
-    // 수정
     @PutMapping("/{qnaId}")
     @Operation(summary = "Q&A 수정", description = "Q&A를 수정합니다.")
-    public ResponseEntity<QnAResponseDto> updateQna(
+    public ResponseEntity<QnAEditDto> updateQna(
             @PathVariable Long qnaId,
             @RequestBody QnACreateRequestDto requestDto){
         return ResponseEntity.ok(qnaService.updateQna(qnaId,requestDto));
     }
 
-    // 삭제
     @DeleteMapping("/{qnaId}")
     @Operation(summary = "Q&A 삭제", description = "Q&A를 삭제합니다.")
     public ResponseEntity<String> deleteQna(@PathVariable Long qnaId){
