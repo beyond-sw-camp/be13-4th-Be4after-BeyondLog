@@ -1,7 +1,10 @@
 package com.beyond.be4th4teambackend.qna.entity;
 
+import com.beyond.be4th4teambackend.auth.entity.User;
 import com.beyond.be4th4teambackend.global.entity.BaseEntity;
 import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +17,9 @@ import lombok.experimental.SuperBuilder;
 public abstract class BaseQnAEntity extends BaseEntity {
     // id, 생성일, 수정일 상속받음
 
-    // 추후에 추가될 유저 테이블 고려
-    // private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(nullable = false)
     private String title;

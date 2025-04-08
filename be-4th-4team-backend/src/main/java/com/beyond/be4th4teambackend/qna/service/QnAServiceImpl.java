@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -46,6 +47,17 @@ public class QnAServiceImpl implements QnAService {
     @Override
     public List<QnAResponseDto> getQnA(){
         List<Qna> qnaList = qnARepository.findAll();
+        return qnaList.stream()
+                .filter(qna -> qna.getParent() == null)
+                .map(QnAResponseDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    // 상세 조회
+    @Transactional
+    @Override
+    public List<QnAResponseDto> getQnADetail(Long id){
+        Optional<Qna> qnaList = qnARepository.findById(id);
         return qnaList.stream()
                 .filter(qna -> qna.getParent() == null)
                 .map(QnAResponseDto::fromEntity)

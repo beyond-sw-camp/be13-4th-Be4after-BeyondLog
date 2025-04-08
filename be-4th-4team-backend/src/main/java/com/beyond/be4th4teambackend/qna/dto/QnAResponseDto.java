@@ -1,5 +1,6 @@
 package com.beyond.be4th4teambackend.qna.dto;
 
+import com.beyond.be4th4teambackend.auth.entity.User;
 import com.beyond.be4th4teambackend.qna.entity.Qna;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,8 @@ import java.util.List;
 public class QnAResponseDto {
     private long id;
 
+    private User user;
+
     private String title;
 
     private String content;
@@ -35,6 +38,7 @@ public class QnAResponseDto {
     public static QnAResponseDto fromEntity(Qna qna) {
         return QnAResponseDto.builder()
                 .id(qna.getId())
+                .user(qna.getUser())
                 .content(qna.getContent())
                 .title(qna.getTitle())
                 .createdAt(qna.getCreatedAt())

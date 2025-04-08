@@ -15,6 +15,10 @@ public interface QnAService {
     @Transactional
     List<QnAResponseDto> getQnA();
 
+    // 상세 조회
+    @Transactional
+    List<QnAResponseDto> getQnADetail(Long id);
+
     // 수정
     @Transactional
     QnAEditDto updateQna(Long parentId, QnACreateRequestDto responseDto);
