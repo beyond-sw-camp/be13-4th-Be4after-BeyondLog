@@ -1,5 +1,6 @@
 package com.beyond.be4th4teambackend.qna.entity;
 
+import com.beyond.be4th4teambackend.auth.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

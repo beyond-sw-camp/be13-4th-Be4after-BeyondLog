@@ -44,6 +44,13 @@ public class QnAController {
         return ResponseEntity.ok(qnaService.getQnA());
     }
 
+    @GetMapping("/{qnaId}")
+    @Operation(summary = "Q&A 상세 조회", description = "해당 Q&A를 상세 조회합니다.")
+    public ResponseEntity<List<QnAResponseDto>>getQnADetail(
+            @PathVariable Long qnaId){
+        return ResponseEntity.ok(qnaService.getQnADetail(qnaId));
+    }
+
     @PutMapping("/{qnaId}")
     @Operation(summary = "Q&A 수정", description = "Q&A를 수정합니다.")
     public ResponseEntity<QnAEditDto> updateQna(
