@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://127.0.0.1:3306/project4
-    username: root
-    password: 1116
+    username: beyond
+    password: beyond
 
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
