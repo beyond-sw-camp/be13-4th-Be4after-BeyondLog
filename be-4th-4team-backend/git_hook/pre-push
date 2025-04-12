@@ -8,16 +8,17 @@ OS=$(uname 2>/dev/null || echo "Unknown")
 # OS 문자열에 Windows 관련 내용이 포함되어 있으면(예: MINGW, CYGWIN, MSYS 등) Windows로 판단합니다.
 case "$OS" in
     *MINGW*|*CYGWIN*|*MSYS*)
-        testCommand="/be-4th-4team-backend/gradlew.bat test"
-        ;;
-    *)
-        testCommand=".be-4th-4team-backend/gradlew test"
-        ;;
+        testCommand="gradlew.bat test"
+                ;;
+        *)
+        testCommand="./gradlew test"
+                ;;
 esac
 
 echo "Detected OS: $OS"
 echo "Executing: $testCommand"
 # eval을 사용하여 문자열 형태의 명령어를 실행
+cd "be-4th-4team-backend"
 eval $testCommand
 if [ $? -ne 0 ]; then
     echo "Tests failed. Aborting push."
