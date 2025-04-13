@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: be4after-api-service
+spec:
+  # type: NodePort
+  type: ClusterIP
+  selector:
+    app: be4after-api
+  ports:
+  - port: 8088
+    targetPort: 8088

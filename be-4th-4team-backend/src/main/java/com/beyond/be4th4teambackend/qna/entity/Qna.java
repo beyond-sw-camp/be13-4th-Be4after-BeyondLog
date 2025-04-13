@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -34,5 +35,6 @@ public class Qna extends BaseQnAEntity{
     // 일대다, parent 필드 기준 연결, 부모 삭제되면 자식도 삭제
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     @JsonIgnore
+    @Builder.Default
     private List<Qna> replies = new ArrayList<>(); // 연결된 답변들
 }

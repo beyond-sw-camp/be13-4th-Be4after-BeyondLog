@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mariadb-pv
+spec:
+  capacity:
+    storage: 2Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual
+  persistentVolumeReclaimPolicy: Delete
+  # C:\Users\user\.docker\mariadb 경로에 폳더 생성
+  hostPath:
+    path: /run/desktop/mnt/host/c/Users/user/.docker/mariadb
