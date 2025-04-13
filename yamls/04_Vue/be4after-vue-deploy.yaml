@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: be4after-vue-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: be4after-vue
+  template:
+    metadata:
+      labels:
+        app: be4after-vue
+    spec:
+      containers:
+      - name: be4after-vue
+        image: be4after-vue:1.0
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 80
