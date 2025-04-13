@@ -1,12 +1,14 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://127.0.0.1:3306/project4
+#    url: jdbc:mariadb://172.19.0.1:3306/project4
+    # url: jdbc:mariadb://mariadb:3306/project4
+    url: jdbc:mariadb://mariadb-service:3306/project4
     username: root
-    password: 1116
+    password: root
 
   jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.MariaDBDialect
     hibernate:
       ddl-auto: update
       naming:

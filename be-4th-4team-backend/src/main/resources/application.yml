@@ -3,8 +3,17 @@ spring:
     name: be-4th-4team-backend
   profiles:
     include: config
+  redis:
+    host: redis-service
+    port: 6379
+  main:
+    log-startup-info: true
+  autoconfigure:
+    exclude: 
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
 
 server:
+  address: 0.0.0.0
   port: 8088
 
 springdoc:
@@ -17,3 +26,9 @@ springdoc:
     operations-sorter: alpha
   default-consumes-media-type: application/json;charset=UTF-8
   default-produces-media-type: application/json;charset=UTF-8
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

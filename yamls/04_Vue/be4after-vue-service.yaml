@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: be4after-vue-service
+spec:
+  type: ClusterIP
+  selector:
+    app: be4after-vue
+  ports:
+  - port: 80
+    targetPort: 80
