@@ -38,7 +38,8 @@ pipeline {
                 container('gradle') {
                     dir('be-4th-4team-backend') {
                         sh 'chmod +x ./gradlew'
-                        sh './gradlew clean build -x test'
+                        // sh './gradlew clean build -x test'
+                        sh './gradlew clean bootJar'
                     }
                 }
             }
