@@ -1,0 +1,28 @@
+#!/bin/sh
+
+echo "Running tests..."
+
+# 운영체제 감지: uname 명령어를 이용해 OS 정보를 가져옵니다.
+OS=$(uname 2>/dev/null || echo "Unknown")
+
+# OS 문자열에 Windows 관련 내용이 포함되어 있으면(예: MINGW, CYGWIN, MSYS 등) Windows로 판단합니다.
+case "$OS" in
+    *MINGW*|*CYGWIN*|*MSYS*)
+        testCommand="gradlew.bat test"
+                ;;
+        *)
+        testCommand="./gradlew test"
+                ;;
+esac
+
+echo "Detected OS: $OS"
+echo "Executing: $testCommand"
+# eval을 사용하여 문자열 형태의 명령어를 실행
+cd "be-4th-4team-backend"
+eval $testCommand
+if [ $? -ne 0 ]; then
+    echo "Tests failed. Aborting push."
+    exit 1
+fi
+
+exit 0

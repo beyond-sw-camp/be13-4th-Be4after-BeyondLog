@@ -8,6 +8,7 @@ class Be4th4teamBackendApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println("Hello World");
     }
 
 }
