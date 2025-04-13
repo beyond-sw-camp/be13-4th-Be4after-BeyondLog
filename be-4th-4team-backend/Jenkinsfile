@@ -28,7 +28,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE_NAME = 'ohglory/beyondlog-api'
+        DOCKER_IMAGE_NAME = 'godbyul/beyondlog-api'
         DOCKER_CREDENTIALS_ID = 'dockerhub-access'
     }
 
