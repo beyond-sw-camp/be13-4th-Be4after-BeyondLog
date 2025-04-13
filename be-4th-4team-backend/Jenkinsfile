@@ -64,7 +64,7 @@ pipeline {
                         withEnv(["DOCKER_IMAGE_VERSION=${dockerImageVersion}"]) {
                             sh 'docker -v'
                             sh 'echo $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION'
-                            sh 'docker build --no-cache -f be-4th-4team-backend/Dockerfile -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION be-4th-4team-backend'
+                            sh 'docker build --no-cache -f be-4th-4team-backend/Dockerfile -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION .'
                             sh 'docker image inspect $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION'
                             sh 'docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION'
                         }
