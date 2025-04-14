@@ -84,7 +84,7 @@
 </div>
 
 ## 시스템 아키텍처
-![Image](https://github.com/user-attachments/assets/39bd8611-6ba2-4e7b-be74-5862f7b1b196)
+![Image](https://github.com/user-attachments/assets/510e46b5-4b92-4f47-8f80-4f368fba8faf)
 
 ## CI/CD 파이프라인 관련한 스크립트
 
