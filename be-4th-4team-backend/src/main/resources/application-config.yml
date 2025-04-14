@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://172.19.0.1:3306/project4
+    # url: jdbc:mariadb://mariadb:3306/project4
+    url: jdbc:mariadb://mariadb-service:3306/project4
+    username: root
+    password: root
+
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+jwt:
+  secret: f8436fee36a03197964e2169632e389c687dd9330b6b53225bca1085eea6cef93bb40f00c4d2e2ef1a5bd70a2fb4f3394f81dbbd955e8d00fb57f44fb90a2e1c
