@@ -35,9 +35,9 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",       // OpenAPI 문서 경로 허용
                                 "/swagger-resources/**"  // Swagger 리소스 허용
                         ).permitAll()               // 위 경로는 모두 허용
-                        .requestMatchers(HttpMethod.POST, "/api/v1/notice/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/notice/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/notice/**").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.POST, "/api/v1/notice/**").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.DELETE, "/api/v1/notice/**").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.PUT, "/api/v1/notice/**").hasRole("ADMIN")
                         .anyRequest().permitAll()  // 나머지 요청도 모두 허용 (개발 단계에서)
                 )
                 .csrf(csrf -> csrf.disable()) // CSRF 비활성화 (테스트 환경에서만 사용)
