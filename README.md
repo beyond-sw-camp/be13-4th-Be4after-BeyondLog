@@ -4,9 +4,9 @@
 
 
 ## 팀원 소개
-| <img src="https://github.com/user-attachments/assets/a0586f90-9c45-4d7a-894d-a297ad4ef9f1" width="150" height="150">  | <img src="https://github.com/user-attachments/assets/dae8b52f-052b-4fc1-a4c4-ddaa9e3aa6bd" width="150" height="150">  | <img src="https://github.com/user-attachments/assets/49d61e1d-ed1f-4e49-b492-0e577816c61a" width="150" height="150">  | <img src="https://github.com/user-attachments/assets/8a78e39e-37af-449b-8bfc-787e22b2eb22" width="150" height="150">  | <img src="https://github.com/user-attachments/assets/f4423543-26d9-4e13-be0d-16966ed642d5" width="150" height="150"> |
-| ------------------------------------ | ------------------------------------- | ----------------------------------- | -------------------------------------- | ------------------------------------ |
-| [오영광](https://github.com/OhGlory) | [김범석](https://github.com/g00dbyul) | [홍재민](https://github.com/MSP-31) | [박서준](https://github.com/pppseojun) | [이희진](https://github.com/2HEEJIN) |
+| <img src="https://github.com/user-attachments/assets/a0586f90-9c45-4d7a-894d-a297ad4ef9f1" width="150" height="150">  | <img src="https://github.com/user-attachments/assets/dae8b52f-052b-4fc1-a4c4-ddaa9e3aa6bd" width="150" height="150">  | <img src="https://github.com/user-attachments/assets/49d61e1d-ed1f-4e49-b492-0e577816c61a" width="150" height="150">  | <img src="https://github.com/user-attachments/assets/8a78e39e-37af-449b-8bfc-787e22b2eb22" width="150" height="150">  |
+| ------------------------------------ | ------------------------------------- | ----------------------------------- | -------------------------------------- |
+| [오영광](https://github.com/OhGlory) | [김범석](https://github.com/g00dbyul) | [홍재민](https://github.com/MSP-31) | [박서준](https://github.com/pppseojun) |
 ## 📌 프로젝트 개요
 
 ### ✨ 개발 동기: 정보 접근성 향상을 위한 우리의 노력 🚀
@@ -99,4 +99,3 @@
 | 김범석 |  |
 | 홍재민 |  |
 | 박서준 |  |
-| 이희진 |  |
