@@ -88,7 +88,34 @@
 
 ## CI/CD 파이프라인 관련한 스크립트
 
+<details>
+<summary>Jenkins Pipline</summary>
+
+ 
+</details>
+
 ## CI/CD 실행 결과
+
+<details>
+<summary>Jenkins</summary>
+
+![Image](https://github.com/user-attachments/assets/6b99f436-806e-4a22-ba38-a040c04a26ff)
+
+</details>
+
+<details>
+<summary>argo CD</summary>
+
+
+</details>
+
+<details>
+<summary>discord bot</summary>
+
+![Image](https://github.com/user-attachments/assets/dd09e703-c4eb-4d8d-b9a4-af3a02628214)
+
+</details>
+
 
 ## 📝 회고
 
