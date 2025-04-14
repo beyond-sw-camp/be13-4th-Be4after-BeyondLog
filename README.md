@@ -91,7 +91,173 @@
 <details>
 <summary>Jenkins Pipline</summary>
 
+````
+pipeline {
+    agent {
+        kubernetes {
+            yaml '''
+            apiVersion: v1
+            kind: Pod
+            metadata:
+              name: jenkins-agent
+            spec:
+              containers:
+              - name: gradle
+                image: gradle:8.5-jdk21-alpine
+                command: ["cat"]
+                tty: true
+              - name: docker
+                image: docker:27.2.0-alpine3.20
+                command: ["cat"]
+                tty: true
+                volumeMounts:
+                - mountPath: "/var/run/docker.sock"
+                  name: docker-socket
+              volumes:
+              - name: docker-socket
+                hostPath:
+                  path: "/var/run/docker.sock"
+            '''
+        }
+    }
+
+    environment {
+        DOCKER_IMAGE_NAME = 'godbyul/beyondlog-api'
+        DOCKER_CREDENTIALS_ID = 'dockerhub-access'
+    }
+
+    stages {
+        stage('Gradle Build') {
+            steps {
+                container('gradle') {
+                    dir('be-4th-4team-backend') {
+                        sh 'chmod +x ./gradlew'
+                        // sh './gradlew clean build -x test'
+                        sh './gradlew clean bootJar'
+                    }
+                }
+            }
+        }
+
+        stage('Image Build & Push') {
+            steps {
+                container('docker') {
+                    dir('be-4th-4team-backend') {
+                        script {
+                            def dockerImageVersion = "${env.BUILD_NUMBER}"
+
+                            sh 'docker logout'
+
+                            withCredentials([usernamePassword(
+                                credentialsId: DOCKER_CREDENTIALS_ID,
+                                usernameVariable: 'DOCKER_USERNAME', 
+                                passwordVariable: 'DOCKER_PASSWORD'
+                                )]) {
+                                sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                            }
+
+                            withEnv(["DOCKER_IMAGE_VERSION=${dockerImageVersion}"]) {
+                                sh 'docker -v'
+                                sh 'echo $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION'
+                                sh 'pwd'
+                                sh 'ls -al'
+                                sh 'docker build --no-cache -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION .'
+                                sh 'docker image inspect $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION'
+                                sh 'docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Trigger beyondlog-k8s-manifests') {
+            steps {
+                script {
+                    def dockerImageVersion = "${env.BUILD_NUMBER}"
+                    
+                    withEnv(["DOCKER_IMAGE_VERSION=${dockerImageVersion}"]) {
+                        // 다른 잡을 빌드하면서 파라미터 전달
+                        build job: 'beyondlog-k8s-manifests',
+                            parameters: [
+                                string(name: 'DOCKER_IMAGE_VERSION', value: "${DOCKER_IMAGE_VERSION}")
+                            ],
+                            wait: true // 하위 잡이 끝날 때까지 기다림
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            withCredentials([string(
+                credentialsId: 'discord-webhook', 
+                variable: 'DISCORD_WEBHOOK_URL'
+            )]) {
+                discordSend description: """
+                제목 : ${currentBuild.displayName}
+                결과 : ${currentBuild.result}
+                실행 시간 : ${currentBuild.duration / 1000}s
+                """,
+                result: currentBuild.currentResult,
+                title: "${env.JOB_NAME} : ${currentBuild.displayName}", 
+                webhookURL: "${DISCORD_WEBHOOK_URL}"
+            }
+        }
+    }
+}
+
+````
+
  
+</details>
+
+<details>
+<summary>k8s manifest Pipline</summary>
+
+````
+pipeline {
+    agent any
+    parameters {
+        string(name: 'DOCKER_IMAGE_VERSION', defaultValue: '', description: 'First parameter')
+    }
+    stages {
+        stage('Update deploy.yaml') {
+            steps {
+                dir('beyondLog-api') {
+                    echo "${params.DOCKER_IMAGE_VERSION}"
+                    sh 'pwd'
+                    sh 'ls -al'
+                    sh 'git checkout develop'
+                    sh "sed -i 's|godbyul/beyondlog-api:.*|godbyul/beyondlog-api:${params.DOCKER_IMAGE_VERSION}|g' deploy.yaml"
+                    sh 'cat deploy.yaml'
+                }
+            }
+        }
+
+        stage('Commit & Push') {
+            steps {
+                sh 'git config --list'
+                sh 'git config user.name "ohglory"'
+                sh 'git config user.email "a25553683@gmail.com"'
+                sh 'git config --list'
+                sh 'git add .'
+                sh "git commit -m 'Update Image Version ${params.DOCKER_IMAGE_VERSION}'"
+                sh 'git status'
+                withCredentials([usernamePassword(
+                    credentialsId: 'git-plz',
+                    usernameVariable: 'GIT_USERNAME',
+                    passwordVariable: 'GIT_PASSWORD'
+                )]) {
+                    sh "git remote set-url origin https://$GIT_USERNAME:$GIT_PASSWORD@github.com/beyond-sw-camp/be13-4th-Be4after-BeyondLog-manifests.git"
+                    sh 'git push -u origin develop'
+                }
+            }
+        }
+    }
+}
+````
 </details>
 
 ## CI/CD 실행 결과
@@ -106,6 +272,7 @@
 <details>
 <summary>argo CD</summary>
 
+![Image](https://github.com/user-attachments/assets/522ca493-3f9b-447d-916b-0f0f73f1b1c5)
 
 </details>
 
@@ -113,6 +280,53 @@
 <summary>discord bot</summary>
 
 ![Image](https://github.com/user-attachments/assets/dd09e703-c4eb-4d8d-b9a4-af3a02628214)
+
+</details>
+
+## 기능 TEST
+### USER
+<details>
+<summary>로그인</summary>
+
+![Image](https://github.com/user-attachments/assets/b595414c-e979-4d04-8a26-339971f0bd2f)
+
+</details>
+
+<details>
+<summary>로그아웃</summary>
+
+![logout](https://github.com/user-attachments/assets/49be1729-e338-4b65-875f-87b44334d84d)
+
+</details>
+
+### Q&A
+<details>
+<summary>Q&A 조회</summary>
+
+![get](https://github.com/user-attachments/assets/2e8536b2-2127-4175-873a-2ad9cc6831e7)
+
+</details>
+
+<details>
+<summary>Q&A 등록</summary>
+
+![post1](https://github.com/user-attachments/assets/52eec356-7fdb-488d-9ae6-6ed481a52191)
+
+![post2](https://github.com/user-attachments/assets/241fe1d6-526d-4833-aff0-046a1cbfd255)
+
+</details>
+
+<details>
+<summary>Q&A 수정</summary>
+
+![update](https://github.com/user-attachments/assets/795e3894-258e-4016-88ca-9b2c9be69b08)
+
+</details>
+
+<details>
+<summary>Q&A 삭제</summary>
+
+![delete](https://github.com/user-attachments/assets/156a2164-0f49-4dc3-a6e3-059dcfc108ef)
 
 </details>
 
