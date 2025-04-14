@@ -43,7 +43,6 @@
   
   <img src="https://img.shields.io/badge/querydsl-0769AD?style=for-the-badge&logo=&logoColor=white">
   <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
-  <img src="https://camo.githubusercontent.com/0e32f7d492a3985eab4d0f787b6123a2dd0be8730c7a64983b203ee446fbf1ed/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6a77742d3030303030303f7374796c653d666f722d7468652d6261646765266c6f676f3d6a736f6e776562746f6b656e73266c6f676f436f6c6f723d7768697465" data-canonical-src="https://img.shields.io/badge/jwt-000000?style=for-the-badge&amp;logo=jsonwebtokens&amp;logoColor=white" style="max-width: 100%;">
 </div>
 
 ### FrontEnd
@@ -71,7 +70,6 @@
 
 <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
 <img src="https://img.shields.io/badge/argocd-EF7B4D?style=for-the-badge&logo=argo&logoColor=white">
-<img src="https://img.shields.io/badge/ngeinx-009639?style=for-the-badge&logo=nginx&logoColor=white">
 
 </div>
 
@@ -86,6 +84,7 @@
 </div>
 
 ## 시스템 아키텍처
+![Image](https://github.com/user-attachments/assets/39bd8611-6ba2-4e7b-be74-5862f7b1b196)
 
 ## CI/CD 파이프라인 관련한 스크립트
 
