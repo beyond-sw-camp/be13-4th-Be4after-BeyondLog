@@ -17,7 +17,7 @@ public class SwaggerConfig {
         Info info = new Info()
                 .title("PROJECT 4")
                 .version(springdocVersion)
-                .description("Beyond SW 13기 4th project team4");
+                .description("Beyond SW 13기 4th project team4 : BeyondLog API");
 
         return new OpenAPI()
                 .components(new Components().addSecuritySchemes(
